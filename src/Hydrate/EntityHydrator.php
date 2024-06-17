@@ -296,6 +296,14 @@ class EntityHydrator implements HydratorInterface
             }
         }
 
+        $included = $data['data'] ?? [];
+
+        foreach ($included as $item) {
+            if (array_key_exists('id', $item) && $item['id'] === $id && $item['type'] === $key) {
+                return $item;
+            }
+        }
+
         return null;
     }
 }
